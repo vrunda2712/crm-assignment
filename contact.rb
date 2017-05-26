@@ -8,13 +8,13 @@ class Contact
 
   # This method should initialize the contact's attributes
   def initialize(first_name, last_name, email, note)
+    @id = @@id
+    @@id += 1
+    
     @first_name = first_name
     @last_name = last_name
     @email = email
     @note = note
-
-    @id = @@id
-    @@id += 1
   end
 
   # This method should call the initializer,
