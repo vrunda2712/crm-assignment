@@ -11,6 +11,15 @@ class Contact < ActiveRecord::Base
   field :email, as: :string
   field :note, as: :text
 
+
+    def full_name
+      "#{first_name} #{last_name}"
+    end
+
+  end
+
+  Contact.auto_upgrade!
+  
   # @@contacts = []
   # @@id = 1
 
@@ -103,9 +112,6 @@ class Contact < ActiveRecord::Base
   #   @@contacts.clear
   # end
 
-  def full_name
-    "#{first_name} #{last_name}"
-  end
 
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
@@ -116,9 +122,7 @@ class Contact < ActiveRecord::Base
   # Feel free to add other methods here, if you need them.
 
 
-end
 
-Contact.auto_upgrade!
 # contact1 = Contact.create('Vrunda','Patel','vrunda2712@gmail.com','Loves dog')
 # contact2 = Contact.create('Nish','Patel','nish8@gmail.com','Meeting on 05-29')
 

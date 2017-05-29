@@ -2,6 +2,7 @@ require_relative 'contact'
 
 class CRM
 
+
   def initialize
 
   end
@@ -32,7 +33,7 @@ class CRM
       when 3 then delete_contact
       when 4 then display_all_contacts
       when 5 then search_by_attribute
-      when 6 then Exit
+      when 6 then exit
     end
   end
 
@@ -49,22 +50,29 @@ class CRM
     print 'Enter a Note: '
     note = gets.chomp
 
-    Contact.create(first_name, last_name, email, note)
+    # Contact.create(first_name, last_name, email, note)
+
+    contact = Contact.create(
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
+      note: note
+    )
   end
 
   def modify_existing_contact
     print 'Search contact to modify by - (first_name): '
     search = gets.chomp
 
-    modify_contact = Contact.find_by("first_name",search)
+    modify_contact = Contact.find_by("first_name" => search)
 
     print 'Enter attribute to change by - (first_name, last_name, email, note): '
     value = gets.chomp
 
-    print 'Enter new info: '
+    print 'Enter new value: '
     new_value = gets.chomp
 
-    modify_contact.update(value, new_value)
+    modify_contact.update(value => new_value)
   end
 
   def delete_contact
@@ -89,9 +97,9 @@ class CRM
     print 'Enter value to search for: '
     search = gets.chomp
 
-    p Contact.find_by(value,search)
+    p Contact.find_by(value => search)
   end
-  #
+
   at_exit do
     ActiveRecord::Base.connection.close
   end

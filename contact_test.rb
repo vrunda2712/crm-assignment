@@ -5,7 +5,11 @@ require_relative 'contact'
 class TestContact < Minitest::Test
 
   def setup
-    @contact = Contact.create('Grace', 'Hopper', 'grace@hopper.com', 'computer scientist')
+    @contact = Contact.create(
+    first_name: 'Grace',
+    last_name: 'Hopper',
+    email: 'grace@hopper.com',
+    note: 'computer scientist')
   end
 
   def teardown
@@ -27,10 +31,11 @@ class TestContact < Minitest::Test
   end
 
   def test_find_by
-    expected_value = @contact
-    actual_value = Contact.find_by('first_name', 'Grace')
+    # expected_value = @contact
+    # actual_value = Contact.find_by('first_name', 'Grace')
 
-    assert_equal(expected_value, actual_value)
+    # assert_equal(expected_value, actual_value)
+    assert_equal @contact, Contact.find_by(first_name: 'Grace')
   end
 
   def test_delete_all
@@ -50,12 +55,15 @@ class TestContact < Minitest::Test
   end
 
   def test_update
-    @contact.update('note', 'wrote the first compiler in 1952')
+    # @contact.update('note', 'wrote the first compiler in 1952')
+    @contact.update(note: 'wrote the first compiler in 1952')
 
-    expected_value = 'wrote the first compiler in 1952'
-    actual_value = @contact.note
+    # expected_value = 'wrote the first compiler in 1952'
+    # actual_value = @contact.note
 
-    assert_equal(expected_value, actual_value)
+    # assert_equal(expected_value, actual_value)
+    assert_equal 'wrote the first compiler in 1952', @contact.note
+
   end
 
   def test_delete
