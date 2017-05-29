@@ -1,3 +1,9 @@
+gem 'activerecord', '=4.2.7'
+require 'active_record'
+require 'mini_record'
+
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'crm.sqlite3')
+
 class Contact
 
   @@contacts = []
@@ -10,7 +16,7 @@ class Contact
   def initialize(first_name, last_name, email, note)
     @id = @@id
     @@id += 1
-    
+
     @first_name = first_name
     @last_name = last_name
     @email = email
