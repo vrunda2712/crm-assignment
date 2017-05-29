@@ -91,7 +91,10 @@ class CRM
 
     p Contact.find_by(value,search)
   end
-
+  #
+  at_exit do
+    ActiveRecord::Base.connection.close
+  end
 
 end
 
